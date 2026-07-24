@@ -85,15 +85,41 @@
       display:grid;
       place-items:center;
       position:relative;
+      overflow:hidden;
+      color:white;
       background:
         linear-gradient(90deg, rgba(3,24,50,.90) 0%, rgba(3,24,50,.72) 42%, rgba(3,24,50,.18) 100%),
         url('hero.jpg') center/cover no-repeat;
-      color:white;
     }
+
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+      transition:opacity 1.2s ease;
+    }
+
+    .hero-video.fade-out{
+      opacity:0;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(3,24,50,.90) 0%, rgba(3,24,50,.72) 42%, rgba(3,24,50,.18) 100%);
+      z-index:1;
+      pointer-events:none;
+    }
+
     .hero-content{
       width:min(1160px,92%);
       margin:auto;
       padding:7rem 0;
+      position:relative;
+      z-index:2;
     }
     .eyebrow{
       color:#f2c76a;
@@ -298,6 +324,13 @@
 
   <main>
     <section class="hero" id="home">
+
+      <video id="heroVideo" class="hero-video" autoplay muted playsinline>
+        <source src="hero.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-overlay"></div>
+
       <div class="hero-content">
         <div class="eyebrow">Your Logistics Partner in Alberta</div>
         <h1>One Call. Complete Logistics Solutions.</h1>
@@ -451,5 +484,15 @@
       © 2026 S.M.K Logistics & Supplies Corporation. Moving More. Delivering Better.
     </div>
   </footer>
+
+<script>
+const heroVideo=document.getElementById('heroVideo');
+if(heroVideo){
+ heroVideo.addEventListener('ended',()=>{
+   heroVideo.classList.add('fade-out');
+   setTimeout(()=>heroVideo.style.display='none',1200);
+ });
+}
+</script>
 </body>
 </html>
