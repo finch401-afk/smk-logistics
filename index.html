@@ -120,6 +120,15 @@
       padding:7rem 0;
       position:relative;
       z-index:2;
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .8s ease, transform .8s ease;
+      pointer-events:none;
+    }
+    .hero-content.is-visible{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
     }
     .eyebrow{
       color:#f2c76a;
@@ -487,11 +496,22 @@
 
 <script>
 const heroVideo=document.getElementById('heroVideo');
+const heroContent=document.querySelector('.hero-content');
 if(heroVideo){
+ const revealAt=5.47;
+ const updateHeroContent=()=>{
+   heroContent?.classList.toggle('is-visible',heroVideo.currentTime>=revealAt);
+ };
+ heroVideo.addEventListener('timeupdate',updateHeroContent);
+ heroVideo.addEventListener('seeking',updateHeroContent);
+ heroVideo.addEventListener('error',()=>heroContent?.classList.add('is-visible'));
  heroVideo.addEventListener('ended',()=>{
+   heroContent?.classList.add('is-visible');
    heroVideo.classList.add('fade-out');
    setTimeout(()=>heroVideo.style.display='none',1200);
  });
+}else{
+ heroContent?.classList.add('is-visible');
 }
 </script>
 </body>
