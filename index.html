@@ -1,532 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="S.M.K Logistics — warehousing, transportation, Amazon FBA delivery and distribution across Alberta." />
-  <title>S.M.K Logistics</title>
-  <style>
-    :root{
-      --navy:#08284f;
-      --navy-2:#0d396e;
-      --gold:#c6922f;
-      --light:#f5f7fa;
-      --text:#172033;
-      --muted:#657087;
-      --white:#ffffff;
-      --border:#d9e0e8;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      color:var(--text);
-      background:var(--white);
-      line-height:1.6;
-    }
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    .container{width:min(1160px,92%);margin:auto}
-    .topbar{
-      background:var(--navy);
-      color:white;
-      font-size:.92rem;
-      padding:.55rem 0;
-    }
-    .topbar .container{
-      display:flex;
-      justify-content:space-between;
-      gap:1rem;
-      flex-wrap:wrap;
-    }
-    .topbar a{
-      color:inherit;
-      font-weight:700;
-      text-decoration:none;
-    }
-    .topbar a:hover,
-    .topbar a:focus-visible{
-      color:#f2c76a;
-      text-decoration:underline;
-    }
-    header{
-      position:sticky;
-      top:0;
-      z-index:10;
-      background:rgba(255,255,255,.96);
-      border-bottom:1px solid var(--border);
-      backdrop-filter:blur(10px);
-    }
-    nav{
-      min-height:74px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:2rem;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:.8rem;
-      font-weight:800;
-      color:var(--navy);
-    }
-    .brand-mark{
-      font-size:2rem;
-      letter-spacing:-2px;
-    }
-    .brand-mark span{color:var(--gold)}
-    .brand small{
-      display:block;
-      font-size:.72rem;
-      line-height:1.2;
-      letter-spacing:.04em;
-    }
-    .nav-links{
-      display:flex;
-      gap:1.3rem;
-      font-weight:700;
-      font-size:.95rem;
-    }
-    .nav-links a:hover{color:var(--gold)}
-    .hero{
-      min-height:680px;
-      display:grid;
-      place-items:center;
-      position:relative;
-      overflow:hidden;
-      color:white;
-      background:
-        linear-gradient(90deg, rgba(3,24,50,.90) 0%, rgba(3,24,50,.72) 42%, rgba(3,24,50,.18) 100%),
-        url('hero.jpg') center/cover no-repeat;
-    }
-
-    .hero-video{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      z-index:0;
-      transition:opacity 1.2s ease;
-    }
-
-    .hero-video.fade-out{
-      opacity:0;
-    }
-
-    .hero-overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(90deg, rgba(3,24,50,.90) 0%, rgba(3,24,50,.72) 42%, rgba(3,24,50,.18) 100%);
-      z-index:1;
-      pointer-events:none;
-    }
-
-    .hero-content{
-      opacity:0;
-      transform:translateY(14px);
-      transition:opacity .8s ease, transform .8s ease;
-      width:min(1160px,92%);
-      margin:auto;
-      padding:7rem 0;
-      position:relative;
-      z-index:2;
-    }
-    .hero-content.is-visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-    .eyebrow{
-      color:#f2c76a;
-      text-transform:uppercase;
-      font-weight:800;
-      letter-spacing:.14em;
-      font-size:.83rem;
-    }
-    h1{
-      font-size:clamp(2.5rem,6vw,5.2rem);
-      line-height:1.02;
-      max-width:760px;
-      margin:.8rem 0 1rem;
-    }
-    .hero p{
-      max-width:680px;
-      font-size:1.2rem;
-      color:#e9eef5;
-    }
-    .cta-row{
-      display:flex;
-      gap:1rem;
-      flex-wrap:wrap;
-      margin-top:2rem;
-    }
-    .btn{
-      display:inline-block;
-      padding:.95rem 1.25rem;
-      border-radius:8px;
-      font-weight:800;
-      border:2px solid transparent;
-    }
-    .btn-primary{background:var(--gold);color:#10233e}
-    .btn-secondary{border-color:white;color:white}
-    .stats{
-      margin-top:-55px;
-      position:relative;
-      z-index:2;
-    }
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      background:white;
-      border-radius:14px;
-      box-shadow:0 16px 40px rgba(8,40,79,.18);
-      overflow:hidden;
-    }
-    .stat{
-      padding:1.6rem;
-      text-align:center;
-      border-right:1px solid var(--border);
-    }
-    .stat:last-child{border-right:0}
-    .stat strong{display:block;font-size:1.9rem;color:var(--navy)}
-    .section{padding:5.5rem 0}
-    .section.alt{background:var(--light)}
-    .section-title{
-      max-width:780px;
-      margin-bottom:2.2rem;
-    }
-    .section-title h2{
-      font-size:clamp(2rem,4vw,3.2rem);
-      color:var(--navy);
-      margin:.3rem 0 .8rem;
-      line-height:1.1;
-    }
-    .section-title p{color:var(--muted)}
-    .two-col{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:3rem;
-      align-items:center;
-    }
-    .image-card{
-      border-radius:16px;
-      overflow:hidden;
-      box-shadow:0 18px 45px rgba(8,40,79,.15);
-    }
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1.2rem;
-    }
-    .card{
-      background:white;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:1.6rem;
-    }
-    .card h3{color:var(--navy);margin:.5rem 0}
-    .icon{
-      width:48px;
-      height:48px;
-      display:grid;
-      place-items:center;
-      border-radius:12px;
-      background:#f4e9d2;
-      color:var(--gold);
-      font-size:1.45rem;
-    }
-    .service-list,.check-list{
-      padding:0;
-      margin:1rem 0 0;
-      list-style:none;
-    }
-    .service-list li,.check-list li{
-      margin:.5rem 0;
-      padding-left:1.4rem;
-      position:relative;
-    }
-    .service-list li:before,.check-list li:before{
-      content:"✓";
-      position:absolute;
-      left:0;
-      color:var(--gold);
-      font-weight:900;
-    }
-    .locations{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1.2rem;
-    }
-    .location{
-      background:var(--navy);
-      color:white;
-      border-radius:14px;
-      padding:1.8rem;
-    }
-    .location h3{margin-top:0;font-size:1.5rem}
-    .industry-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:1rem;
-    }
-    .industry{
-      border:1px solid var(--border);
-      background:white;
-      border-radius:12px;
-      padding:1.2rem;
-      text-align:center;
-      font-weight:700;
-    }
-    .contact{
-      background:linear-gradient(135deg,var(--navy),var(--navy-2));
-      color:white;
-      border-radius:18px;
-      padding:2.3rem;
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:2rem;
-      align-items:center;
-    }
-    .contact h2{font-size:2.2rem;margin:.2rem 0}
-    .contact-details{
-      display:grid;
-      gap:.7rem;
-      font-size:1.05rem;
-    }
-    footer{
-      background:#041a35;
-      color:#cdd7e4;
-      padding:1.8rem 0;
-      margin-top:5rem;
-    }
-    @media (max-width:900px){
-      .nav-links{display:none}
-      .stats-grid,.cards,.industry-grid{grid-template-columns:repeat(2,1fr)}
-      .two-col,.contact{grid-template-columns:1fr}
-      .locations{grid-template-columns:1fr}
-    }
-    @media (max-width:560px){
-      .stats-grid,.cards,.industry-grid{grid-template-columns:1fr}
-      .hero{min-height:590px}
-      .hero-content{padding:5rem 0}
-      .stat{border-right:0;border-bottom:1px solid var(--border)}
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="S.M.K Logistics provides warehousing, transportation, distribution and Amazon FBA delivery across Alberta and Western Canada.">
+  <meta name="theme-color" content="#071f3d">
+  <title>S.M.K Logistics | Warehousing &amp; Transportation in Alberta</title>
+  <link rel="preload" href="hero-optimized.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container">
-      <span>Calgary & Edmonton, Alberta</span>
-      <span>
-        <a href="tel:+18253437777" aria-label="Call S.M.K Logistics at 825-343-7777">825-343-7777</a>
-        ·
-        <a href="mailto:info@smklogistics.ca" aria-label="Email S.M.K Logistics">info@smklogistics.ca</a>
-      </span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <span>Calgary &amp; Edmonton · Serving Alberta and Western Canada</span>
+      <div class="utility-links">
+        <a href="tel:+18253437777">825-343-7777</a>
+        <a href="mailto:info@smklogistics.ca">info@smklogistics.ca</a>
+      </div>
     </div>
   </div>
 
-  <header>
-    <nav class="container">
-      <a class="brand" href="#home">
-        <div class="brand-mark">S.<span>M</span>.K</div>
-        <small>LOGISTICS</small>
+  <header class="site-header" data-header>
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="S.M.K Logistics home">
+        <span class="brand-name">S.<b>M</b>.K</span>
+        <span class="brand-copy">LOGISTICS<small>Moving more. Delivering better.</small></span>
       </a>
-      <div class="nav-links">
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation" data-menu-toggle>
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-menu" id="nav-menu" data-menu>
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#locations">Locations</a>
         <a href="#industries">Industries</a>
-        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="#contact">Request a quote <span aria-hidden="true">→</span></a>
       </div>
     </nav>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-
-      <video id="heroVideo" class="hero-video" autoplay muted playsinline>
-        <source src="hero.mp4" type="video/mp4">
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="hero-optimized.jpg" aria-hidden="true">
+        <source src="hero.mp4" type="video/mp4" media="(min-width: 681px)">
       </video>
-
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-        <div class="eyebrow">Your Logistics Partner in Alberta</div>
-        <h1>One Call. Complete Logistics Solutions.</h1>
-        <p>Professional warehousing, transportation, Amazon FBA delivery and distribution services across Alberta and Western Canada.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:8253437777">Call 825-343-7777</a>
-          <a class="btn btn-secondary" href="#services">Explore Services</a>
+      <div class="hero-shade"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow light">Your logistics partner in Alberta</p>
+          <h1 id="hero-title">One call.<br><span>Every mile covered.</span></h1>
+          <p class="hero-lede">Warehousing, transportation, Amazon FBA delivery and distribution—coordinated by one dependable local team.</p>
+          <div class="hero-actions">
+            <a class="button button-gold" href="tel:+18253437777">Call 825-343-7777 <span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost" href="#services">Explore services <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-trust" aria-label="Service highlights">
+            <span><i></i> Fast response</span>
+            <span><i></i> Flexible service</span>
+            <span><i></i> On-time delivery</span>
+          </div>
         </div>
+      </div>
+      <a class="scroll-cue" href="#proof" aria-label="Scroll to company highlights"><span></span>Scroll</a>
+    </section>
+
+    <section class="proof" id="proof" aria-label="Company highlights">
+      <div class="container proof-grid">
+        <div class="proof-item"><strong>40,000<sup>+</sup></strong><span>sq. ft. warehouse space</span></div>
+        <div class="proof-item"><strong>2</strong><span>Alberta locations</span></div>
+        <div class="proof-item"><strong>5 ton</strong><span>box truck capacity</span></div>
+        <div class="proof-item"><strong>53 ft</strong><span>dry van trailers</span></div>
       </div>
     </section>
 
-    <div class="stats">
-      <div class="container stats-grid">
-        <div class="stat"><strong>40,000+</strong><span>SQ FT Warehouse Space</span></div>
-        <div class="stat"><strong>2</strong><span>Alberta Locations</span></div>
-        <div class="stat"><strong>5 Ton</strong><span>Box Trucks</span></div>
-        <div class="stat"><strong>53 FT</strong><span>Dry Van Trailers</span></div>
-      </div>
-    </div>
-
-    <section class="section" id="about">
-      <div class="container two-col">
-        <div>
-          <div class="eyebrow">About S.M.K</div>
-          <h2>Reliable logistics built around your business.</h2>
-          <p>S.M.K Logistics provides professional, efficient and dependable one-stop logistics solutions for businesses in Canada.</p>
-          <p>With warehouse facilities in Calgary and Edmonton, we provide fast coverage across Alberta and Western Canada, including warehousing, transportation, Amazon FBA delivery, cross-border logistics and supply-chain support.</p>
-          <ul class="check-list">
-            <li>Fast response and flexible service</li>
-            <li>Professional warehouse and delivery team</li>
-            <li>Competitive pricing</li>
-            <li>Reliable, on-time delivery</li>
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="section-copy reveal">
+          <p class="eyebrow">Built for businesses on the move</p>
+          <h2>Reliable logistics, built around your operation.</h2>
+          <p class="lead">From a single pallet to a full truckload, S.M.K Logistics keeps your freight moving with one responsive team from arrival to final delivery.</p>
+          <p>Our Calgary and Edmonton facilities connect warehousing, cross-docking, fulfillment and transportation—giving growing businesses fewer handoffs and better visibility.</p>
+          <ul class="feature-list">
+            <li><span>01</span>Local teams in Calgary and Edmonton</li>
+            <li><span>02</span>Flexible short- and long-term storage</li>
+            <li><span>03</span>Professional last-mile coordination</li>
+            <li><span>04</span>Competitive, customized solutions</li>
           </ul>
         </div>
-        <div class="image-card">
-          <img src="truck-side-remove-supplies-only.png" alt="S.M.K Logistics branded Volvo semi truck with 53-foot trailer" />
+        <div class="about-visual reveal">
+          <div class="image-frame">
+            <img src="truck-optimized.png" alt="S.M.K Logistics semi truck and 53-foot trailer" loading="lazy" decoding="async">
+          </div>
+          <div class="floating-note"><strong>Western Canada</strong><span>Dependable regional coverage</span></div>
         </div>
       </div>
     </section>
 
-    <section class="section alt" id="locations">
+    <section class="section services" id="services">
       <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Dual Warehouse Network</div>
-          <h2>Strategically located in Calgary and Edmonton.</h2>
-          <p>Over 40,000 square feet of combined warehouse space keeps your goods closer to your customers.</p>
-        </div>
-        <div class="locations">
-          <div class="location">
-            <h3>Calgary Warehouse</h3>
-            <p><strong>7803 35 St SE A<br>Calgary, AB</strong></p>
-            <p><strong>20,000 SQ FT</strong></p>
-            <p>Warehouse storage, cross-docking, distribution and local delivery.</p>
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">End-to-end capability</p>
+            <h2>From arrival to final delivery.</h2>
           </div>
-          <div class="location">
-            <h3>Edmonton Warehouse</h3>
-            <p><strong>13155 149 Street<br>Edmonton, AB</strong></p>
-            <p><strong>20,000 SQ FT</strong></p>
-            <p>Warehouse storage, cross-docking, distribution and regional delivery.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Our Services</div>
-          <h2>From container arrival to final delivery.</h2>
+          <p>Choose one service or connect them all. We shape the workflow around your inventory, timelines and customers.</p>
         </div>
 
-        <div class="cards">
-          <article class="card">
-            <div class="icon">🏬</div>
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <div class="service-number">01</div>
+            <div class="service-icon">WH</div>
             <h3>Warehousing</h3>
-            <ul class="service-list">
-              <li>Short-Term Storage</li>
-              <li>Long-Term Warehousing</li>
-              <li>Inventory Management</li>
-              <li>Pick & Pack</li>
-              <li>Order Fulfillment</li>
-              <li>Distribution</li>
+            <p>Secure, flexible space with practical support for daily inventory movement.</p>
+            <ul>
+              <li>Short- and long-term storage</li><li>Inventory management</li><li>Pick, pack and fulfillment</li><li>Cross-docking and distribution</li>
             </ul>
           </article>
-
-          <article class="card">
-            <div class="icon">🚛</div>
+          <article class="service-card featured reveal">
+            <div class="service-number">02</div>
+            <div class="service-icon">TR</div>
             <h3>Transportation</h3>
-            <ul class="service-list">
-              <li>Local Delivery</li>
-              <li>Alberta Distribution</li>
-              <li>LTL Freight</li>
-              <li>FTL Freight</li>
-              <li>Scheduled Delivery</li>
-              <li>Warehouse Transfer</li>
+            <p>Dependable freight movement across Alberta and throughout Western Canada.</p>
+            <ul>
+              <li>Local and regional delivery</li><li>LTL and FTL freight</li><li>Scheduled delivery</li><li>Warehouse transfers</li>
             </ul>
           </article>
-
-          <article class="card">
-            <div class="icon">📦</div>
-            <h3>Amazon FBA One-Stop Service</h3>
-            <ul class="service-list">
-              <li>Amazon Appointment Scheduling</li>
-              <li>Container Destuffing</li>
-              <li>Palletizing</li>
-              <li>Labeling</li>
-              <li>Cross Dock</li>
-              <li>Last-Mile Delivery</li>
+          <article class="service-card reveal">
+            <div class="service-number">03</div>
+            <div class="service-icon">FBA</div>
+            <h3>Amazon FBA</h3>
+            <p>One coordinated path from container receipt to Amazon fulfillment centres.</p>
+            <ul>
+              <li>Appointment scheduling</li><li>Container destuffing</li><li>Palletizing and labelling</li><li>Last-mile delivery</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section alt" id="industries">
+    <section class="section locations" id="locations">
+      <div class="container locations-grid">
+        <div class="location-intro reveal">
+          <p class="eyebrow light">Dual warehouse network</p>
+          <h2>Close to your customers. Ready for what’s next.</h2>
+          <p>More than 40,000 square feet of combined warehouse capacity, strategically positioned in Alberta’s two largest logistics hubs.</p>
+          <a class="text-link" href="#contact">Discuss your storage needs <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="location-cards">
+          <article class="location-card reveal">
+            <div class="location-top"><span>YYC</span><small>20,000 sq. ft.</small></div>
+            <h3>Calgary</h3>
+            <address>7803 35 St SE A<br>Calgary, Alberta</address>
+            <p>Storage · Cross-dock · Distribution · Local delivery</p>
+          </article>
+          <article class="location-card reveal">
+            <div class="location-top"><span>YEG</span><small>20,000 sq. ft.</small></div>
+            <h3>Edmonton</h3>
+            <address>4564 36 St E<br>Edmonton International Airport, AB<br>T9E 0V4</address>
+            <p>Storage · Cross-dock · Distribution · Regional delivery</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section industries" id="industries">
       <div class="container">
-        <div class="section-title">
-          <div class="eyebrow">Industries We Serve</div>
-          <h2>Logistics support for growing businesses.</h2>
+        <div class="section-heading compact reveal">
+          <div><p class="eyebrow">Industries we serve</p><h2>Logistics that fits your business.</h2></div>
         </div>
-        <div class="industry-grid">
-          <div class="industry">Amazon Sellers</div>
-          <div class="industry">Furniture</div>
-          <div class="industry">Building Materials</div>
-          <div class="industry">Packaging Products</div>
-          <div class="industry">Industrial Equipment</div>
-          <div class="industry">Retail Distribution</div>
-          <div class="industry">E-commerce</div>
-          <div class="industry">Import & Export</div>
+        <div class="industry-grid reveal">
+          <div><span>01</span>Amazon sellers</div><div><span>02</span>Furniture</div>
+          <div><span>03</span>Building materials</div><div><span>04</span>Packaging products</div>
+          <div><span>05</span>Industrial equipment</div><div><span>06</span>Retail distribution</div>
+          <div><span>07</span>E-commerce</div><div><span>08</span>Import &amp; export</div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contact">
-      <div class="container contact">
-        <div>
-          <div class="eyebrow">Let’s Move Your Business Forward</div>
-          <h2>From Container to Amazon — All in One Place.</h2>
-          <p>Contact S.M.K Logistics for a customized logistics solution.</p>
+    <section class="contact-section" id="contact">
+      <div class="container contact-panel reveal">
+        <div class="contact-copy">
+          <p class="eyebrow light">Let’s move your business forward</p>
+          <h2>Tell us what needs to move.</h2>
+          <p>Get a logistics solution tailored to your freight, schedule and destination.</p>
         </div>
-        <div class="contact-details">
-          <a href="tel:8253437777">📞 825-343-7777</a>
-          <a href="mailto:info@smklogistics.ca">✉️ info@smklogistics.ca</a>
-          <span>🌐 www.smklogistics.ca</span>
-          <span>📍 Calgary: 7803 35 St SE A, Calgary, AB</span>
-          <span>📍 Edmonton: 13155 149 Street, Edmonton, AB</span>
+        <div class="contact-actions">
+          <a class="contact-link" href="tel:+18253437777"><span>Call us</span><strong>825-343-7777</strong><i aria-hidden="true">↗</i></a>
+          <a class="contact-link" href="mailto:info@smklogistics.ca"><span>Email us</span><strong>info@smklogistics.ca</strong><i aria-hidden="true">↗</i></a>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      © 2026 S.M.K Logistics. Moving More. Delivering Better.
+    <div class="container footer-grid">
+      <a class="brand brand-footer" href="#home" aria-label="S.M.K Logistics home">
+        <span class="brand-name">S.<b>M</b>.K</span><span class="brand-copy">LOGISTICS<small>Moving more. Delivering better.</small></span>
+      </a>
+      <p>Warehousing · Transportation · Distribution · Amazon FBA</p>
+      <p>© <span data-year>2026</span> S.M.K Logistics. All rights reserved.</p>
     </div>
   </footer>
-
-<script>
-const heroVideo=document.getElementById('heroVideo');
-const heroContent=document.querySelector('.hero-content');
-const showHeroContent=()=>heroContent?.classList.add('is-visible');
-
-if(heroVideo){
- heroVideo.addEventListener('timeupdate',()=>{
-   if(heroVideo.currentTime>=5.47) showHeroContent();
- });
- heroVideo.addEventListener('error',showHeroContent);
- heroVideo.addEventListener('ended',()=>{
-   showHeroContent();
-   heroVideo.classList.add('fade-out');
-   setTimeout(()=>heroVideo.style.display='none',1200);
- });
-}else{
- showHeroContent();
-}
-</script>
 </body>
 </html>

@@ -1,21 +1,25 @@
-S.M.K Logistics Website — Complete Package
+S.M.K Logistics Website — Optimized Edition
+
+Open index.html in a browser to preview the website.
 
 Included files:
-- index.html       Main website file
-- hero.mp4        Homepage video
-- hero.jpg        Homepage fallback image / truck image
-- truck-side-remove-supplies-only.png  Updated truck image used by the website
-- warehouse.jpg   Warehouse and brochure image
+- index.html      Main website structure and content
+- styles.css     Responsive design and visual styling
+- script.js      Mobile navigation and lightweight interactions
+- hero.mp4       Homepage background video
+- hero-optimized.jpg  Optimized homepage mobile and video fallback image
+- truck-optimized.png Optimized branded truck image
+- hero.jpg and truck-side-remove-supplies-only.png  Original high-resolution images
+- warehouse.jpg  Original supporting image retained for future use
 
-How to deploy:
-1. Keep all files together in the same folder.
-2. Upload every file to the root folder of the GitHub repository.
-3. Do not rename hero.mp4, hero.jpg or truck-side-remove-supplies-only.png unless index.html is updated too.
-4. After GitHub Pages finishes deploying, refresh the site with a hard reload.
+Key improvements:
+- Immediate hero content (no 5.47-second delay)
+- Responsive mobile navigation
+- Faster mobile loading by using the hero image instead of video
+- Clearer calls to action and information hierarchy
+- Keyboard navigation, reduced-motion support and better focus behavior
+- Search-friendly page title and description
 
-Current business details:
-Company: S.M.K Logistics
+Business details:
 Phone: 825-343-7777
 Email: info@smklogistics.ca
-
-The homepage text appears when the video reaches 5.47 seconds.
